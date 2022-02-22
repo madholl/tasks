@@ -1,5 +1,3 @@
-import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
-
 /**
  * Consumes a single temperature in Fahrenheit (a number) and converts to Celsius
  * using this formula:
