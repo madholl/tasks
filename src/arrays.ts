@@ -5,16 +5,17 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
+    const immutableNumbers = [...numbers];
     const newArr: number[] = [];
-    if (numbers.length === 0) {
+    if (immutableNumbers.length === 0) {
         return newArr;
     }
-    if (numbers.length === 1) {
-        const oneElement = [numbers[0], numbers[0]];
+    if (immutableNumbers.length === 1) {
+        const oneElement = [immutableNumbers[0], immutableNumbers[0]];
         return oneElement;
     } else {
-        const first = numbers[0];
-        const last = numbers[numbers.length - 1];
+        const first = immutableNumbers[0];
+        const last = immutableNumbers[numbers.length - 1];
         const multipleElements = [first, last];
         return multipleElements;
     }
@@ -25,7 +26,8 @@ export function bookEndList(numbers: number[]): number[] {
  * number has been tripled (multiplied by 3).
  */
 export function tripleNumbers(numbers: number[]): number[] {
-    const tripled = numbers.map((price: number): number => price * 3);
+    const immutableNumbers = [...numbers];
+    const tripled = immutableNumbers.map((price: number): number => price * 3);
     return tripled;
 }
 
@@ -34,7 +36,8 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    const newArr = numbers.map((number: string): number =>
+    const immutableNumbers = [...numbers];
+    const newArr = immutableNumbers.map((number: string): number =>
         isNaN(parseInt(number)) === true ? 0 : parseInt(number)
     );
     return newArr;
@@ -48,7 +51,8 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    const removeDollarSigns = amounts.map((number: string): string =>
+    const immutableAmounts = [...amounts];
+    const removeDollarSigns = immutableAmounts.map((number: string): string =>
         number[0] === "$" ? number.substring(1) : number
     );
     const convertToInts = stringsToIntegers(removeDollarSigns);
@@ -61,7 +65,8 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    const upperCase = messages.map((message: string): string =>
+    const immutableMessages = [...messages];
+    const upperCase = immutableMessages.map((message: string): string =>
         message[message.length - 1] === "!" ? message.toUpperCase() : message
     );
     const removeQuestions = upperCase.filter(
@@ -74,7 +79,10 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    const shortWords = words.filter((word: string): boolean => word.length < 4);
+    const immutableWords = [...words];
+    const shortWords = immutableWords.filter(
+        (word: string): boolean => word.length < 4
+    );
     return shortWords.length;
 }
 
@@ -84,11 +92,15 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    const notRGB = colors.filter(
+    const immutableColors = [...colors];
+    const notRGB = immutableColors.filter(
         (color: string): boolean =>
             color === "red" || color === "blue" || color === "green"
     );
-    if (notRGB.length === colors.length || colors.length === 0) {
+    if (
+        notRGB.length === immutableColors.length ||
+        immutableColors.length === 0
+    ) {
         return true;
     } else {
         return false;
@@ -103,13 +115,14 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
+    const immutableAddends = [...addends];
     const addition = "";
-    const sum = addends.reduce(
+    const sum = immutableAddends.reduce(
         (currentTotal: number, num: number) => currentTotal + num,
         0
     );
-    const additionExpression = addends.map((value: number): string =>
-        addends.indexOf(value) + 1 === addends.length
+    const additionExpression = immutableAddends.map((value: number): string =>
+        immutableAddends.indexOf(value) + 1 === immutableAddends.length
             ? addition + value
             : addition + value + "+"
     );
@@ -134,18 +147,19 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    const negatives = values.filter((val) => val < 0);
+    const immutableValues = [...values];
+    const negatives = immutableValues.filter((val) => val < 0);
     if (negatives.length === 0) {
-        const sum = values.reduce(
+        const sum = immutableValues.reduce(
             (currentTotal: number, num: number) => currentTotal + num,
             0
         );
-        return [...values, sum];
+        return [...immutableValues, sum];
     } else {
         const firstNeg = (val: number) => val < 0;
-        const index = values.findIndex(firstNeg);
-        const sum = values.slice(0, index).reduce((a, b) => a + b, 0);
-        values.splice(index + 1, 0, sum);
-        return values;
+        const index = immutableValues.findIndex(firstNeg);
+        const sum = immutableValues.slice(0, index).reduce((a, b) => a + b, 0);
+        immutableValues.splice(index + 1, 0, sum);
+        return immutableValues;
     }
 }
