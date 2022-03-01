@@ -1,12 +1,17 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
+import { makeBlankQuestion, duplicateQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
  * that are `published`.
  */
 export function getPublishedQuestions(questions: Question[]): Question[] {
-    return [];
+    const immutableQs = [...questions];
+    const onlyPublished = immutableQs.filter(
+        (question: Question): boolean => question.published === true
+    );
+    return onlyPublished;
 }
 
 /**
@@ -15,7 +20,14 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return [];
+    const immutableQs = [...questions];
+    const nonEmpty = immutableQs.filter(
+        (question: Question): boolean =>
+            question.expected !== "" ||
+            question.body !== "" ||
+            question.options.length >= 1
+    );
+    return nonEmpty;
 }
 
 /***
@@ -26,7 +38,12 @@ export function findQuestion(
     questions: Question[],
     id: number
 ): Question | null {
-    return null;
+    const immutableQs = [...questions];
+    const foundId = immutableQs.find(
+        (question: Question): boolean => question.id === id
+    );
+    const questionExists = foundId ? foundId : null;
+    return questionExists;
 }
 
 /**
@@ -34,7 +51,11 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return [];
+    const immutableQs = [...questions];
+    const removeIds = immutableQs.filter(
+        (question: Question): boolean => question.id !== id
+    );
+    return removeIds;
 }
 
 /***
@@ -42,21 +63,33 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return [];
+    const immutableQs = [...questions];
+    const questionNames = immutableQs.map(
+        (question: Question): string => question.name
+    );
+    return questionNames;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    return 0;
+    const immutableQs = [...questions];
+    const sum = immutableQs.reduce(
+        (total: number, question: Question) => total + question.points,
+        0
+    );
+    return sum;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return 0;
+    const immutableQs = [...questions];
+    const addPublished = getPublishedQuestions(immutableQs);
+    const publishedTotal = sumPoints(addPublished);
+    return publishedTotal;
 }
 
 /***
@@ -77,7 +110,15 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    return "";
+    const immutableQs = [...questions];
+    const questionAttributes = "id,name,options,points,published";
+    const questionCSV = immutableQs
+        .map(
+            (question: Question): string =>
+                `${question.id},${question.name},${question.options.length},${question.points},${question.published}`
+        )
+        .join("\n");
+    return questionAttributes + "\n" + questionCSV;
 }
 
 /**
@@ -86,7 +127,16 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    const immutableQs = [...questions];
+    const answerCollection: Answer[] = immutableQs.map(
+        (question: Question): Answer => ({
+            questionId: question.id,
+            text: "",
+            submitted: false,
+            correct: false
+        })
+    );
+    return answerCollection;
 }
 
 /***
@@ -94,7 +144,14 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return [];
+    const immutableQs = [...questions];
+    const published = immutableQs.map(
+        (question: Question): Question => ({
+            ...question,
+            published: true
+        })
+    );
+    return published;
 }
 
 /***
@@ -102,7 +159,14 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    const immutableQs = [...questions];
+    const questionTypes = immutableQs.map(
+        (question: Question): string => question.type
+    );
+    const checkType = questionTypes.every(function (type) {
+        return type === questionTypes[0];
+    });
+    return checkType;
 }
 
 /***
@@ -116,7 +180,9 @@ export function addNewQuestion(
     name: string,
     type: QuestionType
 ): Question[] {
-    return [];
+    const immutableQs = [...questions];
+    const blankQuestion = makeBlankQuestion(id, name, type);
+    return [...immutableQs, blankQuestion];
 }
 
 /***
@@ -129,7 +195,14 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const immutableQs = [...questions];
+    const updatedArray = immutableQs.map((question) => {
+        if (question.id === targetId) {
+            return { ...question, name: newName };
+        }
+        return question;
+    });
+    return updatedArray;
 }
 
 /***
@@ -144,7 +217,18 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    const immutableQs = [...questions];
+    const updatedArray = immutableQs.map((question) => {
+        if (question.id === targetId) {
+            if (newQuestionType !== "multiple_choice_question") {
+                return { ...question, type: newQuestionType, options: [] };
+            } else {
+                return { ...question, type: newQuestionType };
+            }
+        }
+        return question;
+    });
+    return updatedArray;
 }
 
 /**
@@ -163,9 +247,41 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ) {
-    return [];
+    const immutableQs = [...questions];
+    const updatedArray = immutableQs.map((question) => {
+        if (question.id === targetId) {
+            return {
+                ...question,
+                options: updateOptions(
+                    targetOptionIndex,
+                    question.options,
+                    newOption
+                )
+            };
+        }
+        return question;
+    });
+    return updatedArray;
 }
 
+/**
+ * Helper function to editOption that applies the logic below
+ * If the `targetOptionIndex` is -1, the `newOption` should be added to the end of the list.
+ * Otherwise, it should *replace* the existing element at the `targetOptionIndex`.
+ */
+export function updateOptions(
+    targetOptionIndex: number,
+    options: string[],
+    newOption: string
+) {
+    const immutableOptions = [...options];
+    if (targetOptionIndex === -1) {
+        return [...immutableOptions, newOption];
+    } else {
+        immutableOptions[targetOptionIndex] = newOption;
+        return immutableOptions;
+    }
+}
 /***
  * Consumes an array of questions, and produces a new array based on the original array.
  * The only difference is that the question with id `targetId` should now be duplicated, with
@@ -177,5 +293,24 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    // const immutableQs = [...questions];
+    // const targetQuestion = findTargetQuestion(immutableQs, targetId);
+    // console.log(targetQuestion);
+    // const duplicateTargetQuestion = duplicateQuestion(newId, targetQuestion);
+    // return [];
+    const immutableQs = [...questions];
+    const duplicateIndex: number = immutableQs.findIndex(
+        (question: Question): boolean => question.id === targetId
+    );
+    const targetQuestion = findQuestion(immutableQs, targetId);
+    if (targetQuestion) {
+        const duplicateTargetQuestion = duplicateQuestion(
+            newId,
+            targetQuestion
+        );
+        immutableQs.splice(1 + duplicateIndex, 0, {
+            ...duplicateTargetQuestion
+        });
+    }
+    return immutableQs;
 }
