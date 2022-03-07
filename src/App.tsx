@@ -1,60 +1,31 @@
 import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import "./App.css";
-import Brodie from "./Brodie.jpg";
+import { ChangeType } from "./components/ChangeType";
+import { RevealAnswer } from "./components/RevealAnswer";
+import { StartAttempt } from "./components/StartAttempt";
+import { TwoDice } from "./components/TwoDice";
+import { CycleHoliday } from "./components/CycleHoliday";
+import { Counter } from "./components/Counter";
 
 function App(): JSX.Element {
     return (
         <div className="App">
-            <header className="App-header">Madison Holloway- UD CISC275</header>
-            <Container>
-                <Row>
-                    <Col>
-                        <div
-                            style={{
-                                width: "500px",
-                                height: "450px",
-                                backgroundColor: "#ef233c"
-                            }}
-                        >
-                            <h3 style={{ textAlign: "left" }}>
-                                Three facts about me:
-                            </h3>
-                            <ul>
-                                <li>I live on a beach town in Massachusetts</li>
-                                <li>I really like movies, especially Marvel</li>
-                                <li>
-                                    I have a 12 year old bulldog named Brodie
-                                    who loves to swim, boat, and go tuna
-                                    fishing.
-                                </li>
-                            </ul>
-                        </div>
-                    </Col>
-                    <Col>
-                        <div
-                            style={{
-                                width: "500px",
-                                height: "450px",
-                                backgroundColor: "#ef233c"
-                            }}
-                        >
-                            Here is a picture of my adorable pup!
-                            <img
-                                src={Brodie}
-                                alt="My 12 year old puppy Brodie"
-                            />
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Button onClick={() => console.log("Hello World!")}>
-                            Log Hello World
-                        </Button>
-                    </Col>
-                </Row>
-            </Container>
+            <header className="App-header">
+                UD CISC275 with React Hooks and TypeScript
+            </header>
+            <hr></hr>
+            <Counter></Counter>
+            <hr />
+            <RevealAnswer></RevealAnswer>
+            <hr />
+            <StartAttempt></StartAttempt>
+            <hr />
+            <TwoDice></TwoDice>
+            <hr />
+            <ChangeType></ChangeType>
+            <hr />
+            <CycleHoliday></CycleHoliday>
         </div>
     );
 }
