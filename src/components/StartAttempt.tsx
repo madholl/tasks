@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 export function StartAttempt(): JSX.Element {
-    type QuestionType = "multiple_choice_question" | "short_answer_question";
     const [attempts, setAttempts] = useState<number>(4);
     const [quizInProgress, setQuizInProgress] = useState<boolean>(false);
-    const [questionType, setQuestionType] = useState<QuestionType>(
-        "short_answer_question"
-    );
 
     function startQuiz(): void {
         setAttempts(attempts - 1);
