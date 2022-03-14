@@ -14,7 +14,7 @@ PASS src/App.test.tsx
 ----------------------|---------|----------|---------|---------|-------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ----------------------|---------|----------|---------|---------|-------------------
-All files             |   93.59 |    88.15 |   87.71 |   93.43 |                   
+All files             |    92.9 |    86.84 |    86.2 |   92.72 |                   
  src                  |     100 |    98.27 |     100 |     100 |                   
   App.tsx             |     100 |      100 |     100 |     100 |                   
   arrays.ts           |     100 |      100 |     100 |     100 |                   
@@ -28,11 +28,11 @@ All files             |   93.59 |    88.15 |   87.71 |   93.43 |
   DoubleHalf.tsx      |     100 |      100 |     100 |     100 |                   
   DoubleHalfState.tsx |       0 |      100 |     100 |       0 | 3                 
   ShoveBox.tsx        |     100 |      100 |     100 |     100 |                   
- src/components       |   55.26 |    56.25 |   36.36 |   55.26 |                   
+ src/components       |   51.28 |       50 |   33.33 |   51.28 |                   
   ChangeType.tsx      |   66.66 |       25 |      50 |   66.66 | 11                
   Counter.tsx         |   66.66 |      100 |      50 |   66.66 | 8                 
-  CycleHoliday.tsx    |   55.55 |      100 |   33.33 |   55.55 | 27-33             
-  RevealAnswer.tsx    |   66.66 |      100 |      50 |   66.66 | 8                 
+  CycleHoliday.tsx    |      40 |      100 |      20 |      40 | 28-34,40-43       
+  RevealAnswer.tsx    |   66.66 |       50 |      50 |   66.66 | 8                 
   StartAttempt.tsx    |      30 |      100 |   14.28 |      30 | 9-18,24-32        
   TwoDice.tsx         |      70 |       50 |      50 |      70 | 11,31-33          
  src/interfaces       |       0 |        0 |       0 |       0 |                   
@@ -43,5 +43,5 @@ All files             |   93.59 |    88.15 |   87.71 |   93.43 |
 Test Suites: 9 passed, 9 total
 Tests:       58 passed, 58 total
 Snapshots:   0 total
-Time:        7.136 s
+Time:        5.663 s
 Ran all test suites.
