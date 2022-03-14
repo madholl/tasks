@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 export function CycleHoliday(): JSX.Element {
-    const [holidayA, setHolidayA] = useState<Holiday>("🎄");
-    const [holidayY, setHolidayY] = useState<Holiday>("🍾");
+    // const [holidayA, setHolidayA] = useState<Holiday>("🎄");
+    // const [holidayY, setHolidayY] = useState<Holiday>("🍾");
+    const [holiday, setHoliday] = useState<Holiday>("🎄");
 
     type Holiday = "🍾" | "🇺🇸" | "👻" | "🦃" | "🎄";
 
@@ -23,22 +24,25 @@ export function CycleHoliday(): JSX.Element {
         "🦃": "🎄"
     };
 
-    function nextHolidayA(): void {
-        const nextHoliday = holidaysAlphabetically[holidayA];
-        setHolidayA(nextHoliday);
+    function nextHolidayA(holiday: Holiday): void {
+        const nextHoliday = holidaysAlphabetically[holiday];
+        setHoliday(nextHoliday);
     }
 
-    function nextHolidayY(): void {
-        const nextHoliday = holidaysByYear[holidayY];
-        setHolidayY(nextHoliday);
+    function nextHolidayY(holiday: Holiday): void {
+        const nextHoliday = holidaysByYear[holiday];
+        setHoliday(nextHoliday);
     }
 
     return (
         <div>
-            <span>Holiday: {holidayA}</span>
-            <Button onClick={nextHolidayA}>Advance Holiday by Alphabet</Button>
-            <span>Holiday: {holidayY}</span>
-            <Button onClick={nextHolidayY}>Advance Holiday by Year</Button>
+            <span>Holiday: {holiday}</span>
+            <Button onClick={() => nextHolidayA(holiday)}>
+                Advance Holiday by Alphabet
+            </Button>
+            <Button onClick={() => nextHolidayY(holiday)}>
+                Advance Holiday by Year
+            </Button>
         </div>
     );
 }
