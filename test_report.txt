@@ -5,43 +5,92 @@
 PASS src/nested.test.ts
 PASS src/arrays.test.ts
 PASS src/objects.test.ts
+PASS src/form-components/MultipleChoiceQuestion.test.tsx
 PASS src/bad-components/ChooseTeam.test.tsx
 PASS src/bad-components/DoubleHalf.test.tsx
 PASS src/functions.test.ts
+PASS src/form-components/CheckAnswer.test.tsx
+PASS src/form-components/EditMode.test.tsx
+PASS src/form-components/GiveAttempts.test.tsx
+PASS src/form-components/ChangeColor.test.tsx
+  ● Console
+
+    console.error
+      Warning: The tag <text> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.
+          at text
+          at div
+          at div
+          at ChangeColor (/home/runner/work/tasks/tasks/src/form-components/ChangeColor.tsx:16:47)
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
+      at createElement (node_modules/react-dom/cjs/react-dom.development.js:9027:9)
+      at createInstance (node_modules/react-dom/cjs/react-dom.development.js:10192:20)
+      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19464:28)
+      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22812:16)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22787:5)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:22707:5)
+
 PASS src/bad-components/ColoredBox.test.tsx
 PASS src/bad-components/ShoveBox.test.tsx
 PASS src/App.test.tsx
-----------------------|---------|----------|---------|---------|-------------------
-File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
-----------------------|---------|----------|---------|---------|-------------------
-All files             |    92.9 |    86.84 |    86.2 |   92.72 |                   
- src                  |     100 |    98.27 |     100 |     100 |                   
-  App.tsx             |     100 |      100 |     100 |     100 |                   
-  arrays.ts           |     100 |      100 |     100 |     100 |                   
-  custom.d.ts         |       0 |        0 |       0 |       0 |                   
-  functions.ts        |     100 |      100 |     100 |     100 |                   
-  nested.ts           |     100 |    94.11 |     100 |     100 | 306               
-  objects.ts          |     100 |      100 |     100 |     100 |                   
- src/bad-components   |   96.96 |       50 |     100 |   96.77 |                   
-  ChooseTeam.tsx      |     100 |       50 |     100 |     100 | 18                
-  ColoredBox.tsx      |     100 |      100 |     100 |     100 |                   
-  DoubleHalf.tsx      |     100 |      100 |     100 |     100 |                   
-  DoubleHalfState.tsx |       0 |      100 |     100 |       0 | 3                 
-  ShoveBox.tsx        |     100 |      100 |     100 |     100 |                   
- src/components       |   51.28 |       50 |   33.33 |   51.28 |                   
-  ChangeType.tsx      |   66.66 |       25 |      50 |   66.66 | 11                
-  Counter.tsx         |   66.66 |      100 |      50 |   66.66 | 8                 
-  CycleHoliday.tsx    |      40 |      100 |      20 |      40 | 28-34,40-43       
-  RevealAnswer.tsx    |   66.66 |       50 |      50 |   66.66 | 8                 
-  StartAttempt.tsx    |      30 |      100 |   14.28 |      30 | 9-18,24-32        
-  TwoDice.tsx         |      70 |       50 |      50 |      70 | 11,31-33          
- src/interfaces       |       0 |        0 |       0 |       0 |                   
-  answer.ts           |       0 |        0 |       0 |       0 |                   
-  question.ts         |       0 |        0 |       0 |       0 |                   
-----------------------|---------|----------|---------|---------|-------------------
+  ● Console
 
-Test Suites: 9 passed, 9 total
-Tests:       58 passed, 58 total
+    console.error
+      Warning: The tag <text> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.
+          at text
+          at div
+          at div
+          at ChangeColor (/home/runner/work/tasks/tasks/src/form-components/ChangeColor.tsx:16:47)
+          at div
+          at App
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
+      at createElement (node_modules/react-dom/cjs/react-dom.development.js:9027:9)
+      at createInstance (node_modules/react-dom/cjs/react-dom.development.js:10192:20)
+      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19464:28)
+      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22812:16)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22787:5)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:22707:5)
+
+-----------------------------|---------|----------|---------|---------|-------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------------|---------|----------|---------|---------|-------------------
+All files                    |   93.61 |    89.13 |   87.87 |   93.46 |                   
+ src                         |     100 |    98.27 |     100 |     100 |                   
+  App.tsx                    |     100 |      100 |     100 |     100 |                   
+  arrays.ts                  |     100 |      100 |     100 |     100 |                   
+  custom.d.ts                |       0 |        0 |       0 |       0 |                   
+  functions.ts               |     100 |      100 |     100 |     100 |                   
+  nested.ts                  |     100 |    94.11 |     100 |     100 | 306               
+  objects.ts                 |     100 |      100 |     100 |     100 |                   
+ src/bad-components          |   96.96 |       50 |     100 |   96.77 |                   
+  ChooseTeam.tsx             |     100 |       50 |     100 |     100 | 18                
+  ColoredBox.tsx             |     100 |      100 |     100 |     100 |                   
+  DoubleHalf.tsx             |     100 |      100 |     100 |     100 |                   
+  DoubleHalfState.tsx        |       0 |      100 |     100 |       0 | 3                 
+  ShoveBox.tsx               |     100 |      100 |     100 |     100 |                   
+ src/components              |   51.28 |       50 |   33.33 |   51.28 |                   
+  ChangeType.tsx             |   66.66 |       25 |      50 |   66.66 | 11                
+  Counter.tsx                |   66.66 |      100 |      50 |   66.66 | 8                 
+  CycleHoliday.tsx           |      40 |      100 |      20 |      40 | 28-34,40-43       
+  RevealAnswer.tsx           |   66.66 |       50 |      50 |   66.66 | 8                 
+  StartAttempt.tsx           |      30 |      100 |   14.28 |      30 | 9-18,24-32        
+  TwoDice.tsx                |      70 |       50 |      50 |      70 | 11,31-33          
+ src/form-components         |     100 |      100 |     100 |     100 |                   
+  ChangeColor.tsx            |     100 |      100 |     100 |     100 |                   
+  CheckAnswer.tsx            |     100 |      100 |     100 |     100 |                   
+  EditMode.tsx               |     100 |      100 |     100 |     100 |                   
+  GiveAttempts.tsx           |     100 |      100 |     100 |     100 |                   
+  MultipleChoiceQuestion.tsx |     100 |      100 |     100 |     100 |                   
+ src/interfaces              |       0 |        0 |       0 |       0 |                   
+  answer.ts                  |       0 |        0 |       0 |       0 |                   
+  question.ts                |       0 |        0 |       0 |       0 |                   
+-----------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 14 passed, 14 total
+Tests:       82 passed, 82 total
 Snapshots:   0 total
-Time:        5.663 s
+Time:        9.157 s
 Ran all test suites.
